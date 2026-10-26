@@ -142,6 +142,15 @@ h1 {
   line-height: 1.5;
 }
 
+.title-note {
+  margin: 0;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  background: #fffdf8;
+  font-size: 0.86rem;
+}
+
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 th {
@@ -172,6 +181,17 @@ tbody tr:hover { background: #fbfcf8; }
 }
 .cell-input:hover { border-color: var(--line); background: #fff; }
 .cell-input:focus { border-color: var(--green); outline: none; background: #fff; box-shadow: 0 0 0 2px rgba(36, 91, 71, 0.1); }
+.title-field { display: grid; gap: 4px; }
+.title-input[aria-invalid="true"] { border-color: var(--danger); background: #fff7f5; }
+.markdown-preview {
+  display: block;
+  overflow: hidden;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .url-input { color: #416457; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.79rem; }
 .source-cell { overflow: hidden; color: var(--muted); font-size: 0.78rem; text-overflow: ellipsis; white-space: nowrap; }
 .delete-cell { text-align: center; }

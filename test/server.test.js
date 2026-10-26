@@ -28,10 +28,14 @@ test('extracts and cleans browser history links', () => {
 });
 
 test('finds saved URLs and serializes a link', () => {
-  const text = '- [Title](<https://example.com/one>)\nSecond, https://example.com/two\n';
+  const text = '[Title](https://example.com/one)\nSecond, https://example.com/two\n';
   assert.deepEqual([...extractUrls(text)], ['https://example.com/one', 'https://example.com/two']);
   assert.equal(
     serializeLink({ title: 'Hello, [world]', url: 'https://example.com/' }),
-    '- [Hello, \\[world\\]](<https://example.com/>)',
+    '[Hello, \\[world\\]](https://example.com/)',
+  );
+  assert.equal(
+    serializeLink({ title: '', url: 'https://example.com/no-title' }),
+    '[https://example.com/no-title](https://example.com/no-title)',
   );
 });

@@ -32,12 +32,7 @@ function cleanTitle(value, url) {
     .trim();
 
   if (title) return title;
-
-  try {
-    return new URL(url).hostname;
-  } catch {
-    return 'Untitled link';
-  }
+  return url || 'Untitled link';
 }
 
 function normalizeLink(item) {
@@ -70,7 +65,13 @@ function extractLinks(html) {
 function extractUrls(text) {
   const urls = new Set();
   for (const line of String(text || '').split(/\r?\n/)) {
-    const markdownMatch = line.match(/\]\(<(https?:\/\/[^>]+)>\)/i);
+    const angleMarkdownMatch = line.match(/\]\(<(https?:\/\/[^>]+)>\)/i);
+    if (angleMarkdownMatch) {
+      urls.add(angleMarkdownMatch[1]);
+      continue;
+    }
+
+    const markdownMatch = line.match(/\]\((https?:\/\/.+)\)\s*$/i);
     if (markdownMatch) {
       urls.add(markdownMatch[1]);
       continue;
@@ -87,7 +88,7 @@ function escapeMarkdownLabel(value) {
 }
 
 function serializeLink({ title, url }) {
-  return `- [${escapeMarkdownLabel(cleanTitle(title, url))}](<${url}>)`;
+  return `[${escapeMarkdownLabel(cleanTitle(title, url))}](${url})`;
 }
 
 function hashContent(content) {

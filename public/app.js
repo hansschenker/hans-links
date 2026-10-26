@@ -39,21 +39,34 @@ function visibleLinks() {
   );
 }
 
+function markdownLink(link) {
+  const title = link.title.trim();
+  if (!title) return 'Title required';
+  const label = title.replace(/([\\\[\]])/g, '\\$1');
+  return `[${label}](${link.url})`;
+}
+
 function updateSaveSummary() {
   const count = state.links.length;
+  const missingTitleCount = state.links.filter((link) => !link.title.trim()).length;
   elements.saveCount.textContent = `${count} ${count === 1 ? 'link' : 'links'} ready`;
-  elements.saveDetail.textContent = state.files.length
+  elements.saveDetail.textContent = missingTitleCount
+    ? `Add a Markdown title to ${missingTitleCount} ${missingTitleCount === 1 ? 'link' : 'links'} before saving.`
+    : state.files.length
     ? `${state.files.length} ${state.files.length === 1 ? 'history file' : 'history files'} will be marked as imported.`
     : 'Nothing has been changed on GitHub.';
-  elements.save.disabled = state.saving || state.files.length === 0;
+  elements.save.disabled = state.saving || state.files.length === 0 || missingTitleCount > 0;
 }
 
 function render() {
   const visible = visibleLinks();
   elements.body.innerHTML = visible.map((link) => `
     <tr data-id="${escapeHtml(link.id)}">
-      <td data-label="Title">
-        <input class="cell-input title-input" value="${escapeHtml(link.title)}" aria-label="Link title">
+      <td data-label="Markdown title">
+        <div class="title-field">
+          <input class="cell-input title-input" value="${escapeHtml(link.title)}" placeholder="Enter a title for this link" aria-label="Markdown title for ${escapeHtml(link.url)}" aria-invalid="${!link.title.trim()}" required>
+          <code class="markdown-preview">${escapeHtml(markdownLink(link))}</code>
+        </div>
       </td>
       <td data-label="URL">
         <input class="cell-input url-input" value="${escapeHtml(link.url)}" aria-label="Link URL" type="url">
@@ -128,6 +141,13 @@ async function loadHistory() {
 }
 
 async function saveLinks() {
+  const missingTitle = state.links.find((link) => !link.title.trim());
+  if (missingTitle) {
+    document.querySelector(`tr[data-id="${CSS.escape(missingTitle.id)}"] .title-input`)?.focus();
+    updateSaveSummary();
+    return;
+  }
+
   state.saving = true;
   elements.save.textContent = 'Saving…';
   elements.saveDetail.textContent = 'Committing your list and import ledger.';
@@ -158,8 +178,15 @@ async function saveLinks() {
 elements.body.addEventListener('input', (event) => {
   const row = event.target.closest('tr');
   if (!row) return;
-  if (event.target.classList.contains('title-input')) updateLink(row.dataset.id, 'title', event.target.value);
+  if (event.target.classList.contains('title-input')) {
+    updateLink(row.dataset.id, 'title', event.target.value);
+    event.target.setAttribute('aria-invalid', String(!event.target.value.trim()));
+  }
   if (event.target.classList.contains('url-input')) updateLink(row.dataset.id, 'url', event.target.value);
+
+  const link = state.links.find((item) => item.id === row.dataset.id);
+  if (link) row.querySelector('.markdown-preview').textContent = markdownLink(link);
+  updateSaveSummary();
 });
 
 elements.body.addEventListener('click', (event) => {
