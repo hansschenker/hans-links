@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Hans Links</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Chrome history → GitHub</p>
+          <h1>Keep the links worth keeping.</h1>
+          <p class="intro">Review new history exports, clean up the list, and save your choices to <a id="repo-link" href="https://github.com/hansschenker/hans-links" target="_blank" rel="noreferrer">hansschenker/hans-links</a>.</p>
+        </div>
+        <button id="refresh-button" class="button button-secondary" type="button">Refresh files</button>
+      </header>
+
+      <section class="summary" aria-label="Import summary">
+        <article>
+          <span class="summary-label">New files</span>
+          <strong id="file-count">—</strong>
+        </article>
+        <article>
+          <span class="summary-label">Links to review</span>
+          <strong id="link-count">—</strong>
+        </article>
+        <article>
+          <span class="summary-label">Already saved</span>
+          <strong id="existing-count">—</strong>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="toolbar">
+          <label class="search-field">
+            <span class="sr-only">Search links</span>
+            <input id="search-input" type="search" placeholder="Search title, URL, or source file" autocomplete="off">
+          </label>
+          <button id="delete-visible-button" class="button button-quiet" type="button">Delete visible</button>
+        </div>
+
+        <div id="file-note" class="file-note" aria-live="polite"></div>
+        <div id="status" class="status" role="status" aria-live="polite">Reading history files…</div>
+
+        <div id="table-wrap" class="table-wrap" hidden>
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>URL</th>
+                <th class="source-column">Source</th>
+                <th><span class="sr-only">Delete</span></th>
+              </tr>
+            </thead>
+            <tbody id="links-body"></tbody>
+          </table>
+        </div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <div class="empty-icon">✓</div>
+          <h2>No new links to review</h2>
+          <p>Add a file named <code>history-YYYY-MM-DD.html</code> or <code>history_YYYY-MM-DD.html</code> to this folder, then refresh.</p>
+        </div>
+      </section>
+
+      <footer class="save-bar">
+        <div>
+          <strong id="save-count">0 links ready</strong>
+          <span id="save-detail">Nothing has been changed on GitHub.</span>
+        </div>
+        <button id="save-button" class="button button-primary" type="button" disabled>Save to GitHub</button>
+      </footer>
+    </main>
+  </body>
+</html>

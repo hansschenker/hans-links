@@ -1,0 +1,13 @@
+{
+  "name": "hans-links",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Review Chrome history exports and save selected links to GitHub.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
