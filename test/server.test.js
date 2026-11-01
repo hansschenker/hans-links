@@ -4,6 +4,8 @@ const {
   HISTORY_FILE_PATTERN,
   extractLinks,
   extractUrls,
+  historyDateFromFileName,
+  serializeDailyLinks,
   serializeLink,
 } = require('../server');
 
@@ -37,5 +39,31 @@ test('finds saved URLs and serializes a link', () => {
   assert.equal(
     serializeLink({ title: '', url: 'https://example.com/no-title' }),
     '[https://example.com/no-title](https://example.com/no-title)',
+  );
+});
+
+test('gets the import date from a supported history filename', () => {
+  assert.equal(historyDateFromFileName('history_2026-10-26.html'), '2026-10-26');
+  assert.equal(historyDateFromFileName('history-2026-10-21.html'), '2026-10-21');
+  assert.equal(historyDateFromFileName('other.html'), null);
+});
+
+test('groups imported links under source dates with the newest date first', () => {
+  assert.equal(
+    serializeDailyLinks([
+      { title: 'Older', url: 'https://example.com/older', sourceFile: 'history_2026-10-21.html' },
+      { title: 'Newest', url: 'https://example.com/newest', sourceFile: 'history-2026-10-26.html' },
+      { title: 'Same day', url: 'https://example.com/same-day', sourceFile: 'history_2026-10-26.html' },
+    ]),
+    [
+      '## 2026-10-26',
+      '',
+      '[Newest](https://example.com/newest)',
+      '[Same day](https://example.com/same-day)',
+      '',
+      '## 2026-10-21',
+      '',
+      '[Older](https://example.com/older)',
+    ].join('\n'),
   );
 });

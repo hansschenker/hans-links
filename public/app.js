@@ -1,13 +1,14 @@
 const state = {
   files: [],
   links: [],
+  selectedIds: new Set(),
   query: '',
   saving: false,
 };
 
 const elements = {
   body: document.querySelector('#links-body'),
-  deleteVisible: document.querySelector('#delete-visible-button'),
+  deleteSelected: document.querySelector('#delete-selected-button'),
   emptyState: document.querySelector('#empty-state'),
   existingCount: document.querySelector('#existing-count'),
   fileCount: document.querySelector('#file-count'),
@@ -18,6 +19,7 @@ const elements = {
   saveCount: document.querySelector('#save-count'),
   saveDetail: document.querySelector('#save-detail'),
   search: document.querySelector('#search-input'),
+  selectAll: document.querySelector('#select-all-checkbox'),
   status: document.querySelector('#status'),
   tableWrap: document.querySelector('#table-wrap'),
 };
@@ -39,13 +41,6 @@ function visibleLinks() {
   );
 }
 
-function markdownLink(link) {
-  const title = link.title.trim();
-  if (!title) return 'Title required';
-  const label = title.replace(/([\\\[\]])/g, '\\$1');
-  return `[${label}](${link.url})`;
-}
-
 function updateSaveSummary() {
   const count = state.links.length;
   const missingTitleCount = state.links.filter((link) => !link.title.trim()).length;
@@ -61,20 +56,17 @@ function updateSaveSummary() {
 function render() {
   const visible = visibleLinks();
   elements.body.innerHTML = visible.map((link) => `
-    <tr data-id="${escapeHtml(link.id)}">
+    <tr data-id="${escapeHtml(link.id)}" class="${state.selectedIds.has(link.id) ? 'is-selected' : ''}">
+      <td class="select-cell" data-label="Delete">
+        <input class="selection-checkbox row-checkbox" type="checkbox" ${state.selectedIds.has(link.id) ? 'checked' : ''} aria-label="Select ${escapeHtml(link.title || link.url)} for deletion">
+      </td>
       <td data-label="Markdown title">
-        <div class="title-field">
-          <input class="cell-input title-input" value="${escapeHtml(link.title)}" placeholder="Enter a title for this link" aria-label="Markdown title for ${escapeHtml(link.url)}" aria-invalid="${!link.title.trim()}" required>
-          <code class="markdown-preview">${escapeHtml(markdownLink(link))}</code>
-        </div>
+        <input class="cell-input title-input" value="${escapeHtml(link.title)}" placeholder="Enter a title for this link" aria-label="Markdown title for ${escapeHtml(link.url)}" aria-invalid="${!link.title.trim()}" required>
       </td>
       <td data-label="URL">
         <input class="cell-input url-input" value="${escapeHtml(link.url)}" aria-label="Link URL" type="url">
       </td>
       <td class="source-column source-cell" data-label="Source">${escapeHtml(link.sourceFile)}</td>
-      <td class="delete-cell">
-        <button class="delete-button" type="button" aria-label="Delete ${escapeHtml(link.title)}" title="Delete link">×</button>
-      </td>
     </tr>
   `).join('');
 
@@ -86,18 +78,20 @@ function render() {
   elements.status.textContent = hasFiles && !hasVisible
     ? state.links.length ? 'No links match your search.' : 'All links were removed. Save to mark these files as imported.'
     : '';
-  elements.deleteVisible.disabled = !hasVisible;
+  const visibleSelectedCount = visible.filter((link) => state.selectedIds.has(link.id)).length;
+  elements.selectAll.checked = hasVisible && visibleSelectedCount === visible.length;
+  elements.selectAll.indeterminate = visibleSelectedCount > 0 && visibleSelectedCount < visible.length;
+  elements.selectAll.disabled = !hasVisible;
+  elements.deleteSelected.disabled = state.selectedIds.size === 0;
+  elements.deleteSelected.textContent = state.selectedIds.size
+    ? `Delete selected (${state.selectedIds.size.toLocaleString()})`
+    : 'Delete selected';
   updateSaveSummary();
 }
 
 function updateLink(id, field, value) {
   const link = state.links.find((item) => item.id === id);
   if (link) link[field] = value;
-}
-
-function deleteLink(id) {
-  state.links = state.links.filter((item) => item.id !== id);
-  render();
 }
 
 async function loadHistory() {
@@ -114,6 +108,7 @@ async function loadHistory() {
 
     state.files = data.files;
     state.links = data.links;
+    state.selectedIds = new Set(data.links.map((link) => link.id));
     elements.fileCount.textContent = data.files.length.toLocaleString();
     elements.linkCount.textContent = data.links.length.toLocaleString();
     elements.existingCount.textContent = data.existingCount.toLocaleString();
@@ -131,6 +126,7 @@ async function loadHistory() {
   } catch (error) {
     state.files = [];
     state.links = [];
+    state.selectedIds.clear();
     elements.status.hidden = false;
     elements.status.textContent = error.message;
     elements.fileNote.textContent = '';
@@ -165,6 +161,7 @@ async function saveLinks() {
     elements.saveDetail.textContent = `${data.savedCount} ${data.savedCount === 1 ? 'link was' : 'links were'} committed to ${data.repository}.`;
     state.files = [];
     state.links = [];
+    state.selectedIds.clear();
     await loadHistory();
   } catch (error) {
     elements.saveDetail.textContent = error.message;
@@ -184,14 +181,15 @@ elements.body.addEventListener('input', (event) => {
   }
   if (event.target.classList.contains('url-input')) updateLink(row.dataset.id, 'url', event.target.value);
 
-  const link = state.links.find((item) => item.id === row.dataset.id);
-  if (link) row.querySelector('.markdown-preview').textContent = markdownLink(link);
   updateSaveSummary();
 });
 
-elements.body.addEventListener('click', (event) => {
-  const button = event.target.closest('.delete-button');
-  if (button) deleteLink(button.closest('tr').dataset.id);
+elements.body.addEventListener('change', (event) => {
+  if (!event.target.classList.contains('row-checkbox')) return;
+  const row = event.target.closest('tr');
+  if (event.target.checked) state.selectedIds.add(row.dataset.id);
+  else state.selectedIds.delete(row.dataset.id);
+  render();
 });
 
 elements.search.addEventListener('input', (event) => {
@@ -199,9 +197,17 @@ elements.search.addEventListener('input', (event) => {
   render();
 });
 
-elements.deleteVisible.addEventListener('click', () => {
-  const visibleIds = new Set(visibleLinks().map((link) => link.id));
-  state.links = state.links.filter((link) => !visibleIds.has(link.id));
+elements.selectAll.addEventListener('change', (event) => {
+  for (const link of visibleLinks()) {
+    if (event.target.checked) state.selectedIds.add(link.id);
+    else state.selectedIds.delete(link.id);
+  }
+  render();
+});
+
+elements.deleteSelected.addEventListener('click', () => {
+  state.links = state.links.filter((link) => !state.selectedIds.has(link.id));
+  state.selectedIds.clear();
   render();
 });
 

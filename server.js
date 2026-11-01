@@ -91,6 +91,27 @@ function serializeLink({ title, url }) {
   return `[${escapeMarkdownLabel(cleanTitle(title, url))}](${url})`;
 }
 
+function historyDateFromFileName(fileName) {
+  const match = String(fileName || '').match(HISTORY_FILE_PATTERN);
+  return match ? match[0].match(/\d{4}-\d{2}-\d{2}/)[0] : null;
+}
+
+function serializeDailyLinks(links) {
+  const linksByDate = new Map();
+
+  for (const link of links) {
+    const date = historyDateFromFileName(link.sourceFile);
+    if (!date) continue;
+    if (!linksByDate.has(date)) linksByDate.set(date, []);
+    linksByDate.get(date).push(serializeLink(link));
+  }
+
+  return [...linksByDate.entries()]
+    .sort(([dateA], [dateB]) => dateB.localeCompare(dateA))
+    .map(([date, serializedLinks]) => `## ${date}\n\n${serializedLinks.join('\n')}`)
+    .join('\n\n');
+}
+
 function hashContent(content) {
   return crypto.createHash('sha256').update(content).digest('hex');
 }
@@ -260,20 +281,26 @@ async function parseRequestBody(request) {
 async function saveSelection(payload) {
   const submittedLinks = Array.isArray(payload.links) ? payload.links : [];
   const submittedFiles = Array.isArray(payload.files) ? payload.files : [];
+  const validSourceFiles = new Set(
+    submittedFiles
+      .filter((file) => file && HISTORY_FILE_PATTERN.test(String(file.name)))
+      .map((file) => String(file.name)),
+  );
   const currentLinks = await getCanonicalLinksText();
   const knownUrls = extractUrls(currentLinks);
   const accepted = [];
 
   for (const item of submittedLinks) {
     const link = normalizeLink(item);
-    if (!link || knownUrls.has(link.url)) continue;
+    const sourceFile = String(item?.sourceFile || '');
+    if (!link || !validSourceFiles.has(sourceFile) || knownUrls.has(link.url)) continue;
     knownUrls.add(link.url);
-    accepted.push(link);
+    accepted.push({ ...link, sourceFile });
   }
 
   const prefix = currentLinks.trimEnd();
-  const appended = accepted.map(serializeLink).join('\n');
-  const nextLinks = [prefix, appended].filter(Boolean).join('\n') + '\n';
+  const appended = serializeDailyLinks(accepted);
+  const nextLinks = [prefix, appended].filter(Boolean).join('\n\n') + '\n';
   const now = new Date().toISOString();
   const ledger = await getImportLedger();
   const ledgerByHash = new Map(ledger.map((item) => [item.sha256, item]));
@@ -372,5 +399,7 @@ module.exports = {
   extractUrls,
   hashContent,
   normalizeLink,
+  historyDateFromFileName,
+  serializeDailyLinks,
   serializeLink,
 };

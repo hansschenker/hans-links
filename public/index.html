@@ -40,21 +40,22 @@
             <span class="sr-only">Search links</span>
             <input id="search-input" type="search" placeholder="Search title, URL, or source file" autocomplete="off">
           </label>
-          <button id="delete-visible-button" class="button button-quiet" type="button">Delete visible</button>
+          <button id="delete-selected-button" class="button button-quiet" type="button">Delete selected</button>
         </div>
 
         <div id="file-note" class="file-note" aria-live="polite"></div>
-        <p class="title-note">Set the <strong>Markdown title</strong> for each URL. The preview shows exactly what will be added to <code>hans-links.md</code>.</p>
         <div id="status" class="status" role="status" aria-live="polite">Reading history files…</div>
 
         <div id="table-wrap" class="table-wrap" hidden>
           <table>
             <thead>
               <tr>
+                <th class="select-column">
+                  <input id="select-all-checkbox" class="selection-checkbox" type="checkbox" checked aria-label="Select all visible links">
+                </th>
                 <th>Markdown title</th>
                 <th>URL</th>
                 <th class="source-column">Source</th>
-                <th><span class="sr-only">Delete</span></th>
               </tr>
             </thead>
             <tbody id="links-body"></tbody>
