@@ -24,3 +24,14 @@
 [jpaulm (Paul Morrison)](https://github.com/jpaulm)
 [Flow-based Programming](https://jpaulm.github.io/fbp/?utm_source=chatgpt.com)
 [Trappes - Search / X](https://x.com/search?q=Trappes&src=trend_click&vertical=trends)
+
+## 2026-10-27
+
+[Recall - Your AI Knowledge Base](https://app.recall.it/item/31c9e7bf-d711-4bdb-9707-46599a530d29?onboarding=true)
+[hansschenker/rxjs-operator-type-comega-notation](https://github.com/hansschenker/rxjs-operator-type-comega-notation)
+[Type RxJS Operators Notation](https://chatgpt.com/c/6ae0a24b-df20-83ed-8b14-6ad7c86e11f4)
+[can we type all Rxjs Operator Behavior with this Erik Meijer Comega Style Type Notation: Base Symbols & Operators Product Type ( x ): Pairs, tuples, or combined inputs (e.g., A! x T! ). Sum Type ( + ): Choice or variant between types (e.g., T! + E! ). Single Value ( ! ): Exactly one required element ( T! ). Optional Value ( ? ): Zero or one element ( T? ). Stream / Observable ( * ): Stream of zero or more elements ( T* ). Higher-Order Stream ( (T*)* ): Stream emitting inner streams. Function Mapping (-> ): Input to output mapping. Core RxJS Grammar & Event Lifecycle Notification Variant: Notification(T, E) = T! + E! + 1 (A sum type: either a Next value T! , an Error E! , or a Complete signal 1) Stream Definition: Stream(T, E) = T !* x (1?+ E?) (Zero or more values T !* followed by an optional completion signal 1? or error E?)](https://chatgpt.com/c/local-chatgpt%3Af6c9043e-0584-4760-9de1-46ed9634ce6f)
+[rxjs-operator-analysis/docs/operators/scan-seedless.md at main · hansschenker/rxjs-operator-analysis](https://github.com/hansschenker/rxjs-operator-analysis/blob/main/docs/operators/scan-seedless.md)
+[rxjs-operator-analysis/docs/operators at main · hansschenker/rxjs-operator-analysis](https://github.com/hansschenker/rxjs-operator-analysis/tree/main/docs/operators)
+[docs+test(s7): per-operator analyses and split tests for the combination family by kiro-agent\[bot\] · Pull Request #6 · hansschenker/rxjs-operator-analysis](https://github.com/hansschenker/rxjs-operator-analysis/pull/6)
+[hansschenker/rxjs-bdd-detailed](https://github.com/hansschenker/rxjs-bdd-detailed)
