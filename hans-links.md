@@ -63,3 +63,4 @@
 [Invariants in software development - Claude](https://claude.ai/chat/053e2c74-b330-4483-a6f1-371491a2b64c?artifact=4bb46b8a-36f8-4898-b70f-2764cbc29788)
 [Invariants in software development - Claude](https://claude.ai/chat/053e2c74-b330-4483-a6f1-371491a2b64c)
 [Introduction to Formal Logic , youtube list](https://www.youtube.com/playlist?list=PL9GQon8eI4P34GwLjNKTz4oxvKS6z7f3I)
+[Discrete Math, Part 1](https://www.youtube.com/watch?v=ex1x7UCVWqU&list=PLPXYWNHDq_WU)
