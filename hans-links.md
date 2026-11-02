@@ -65,3 +65,4 @@
 [Introduction to Formal Logic , youtube list](https://www.youtube.com/playlist?list=PL9GQon8eI4P34GwLjNKTz4oxvKS6z7f3I)
 [Discrete Math, Part 1](https://www.youtube.com/watch?v=ex1x7UCVWqU&list=PLPXYWNHDq_WU)
 [Set Theory, ytl](https://www.youtube.com/playlist?list=PLJv0I6tVORGc2t4jcHD1j46Pzs4qWOiQ0)
+[Arthur Rump, Kleisli arrows explained](https://www.youtube.com/@arthurrump)
