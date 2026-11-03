@@ -66,3 +66,22 @@
 [Discrete Math, Part 1](https://www.youtube.com/watch?v=ex1x7UCVWqU&list=PLPXYWNHDq_WU)
 [Set Theory, ytl](https://www.youtube.com/playlist?list=PLJv0I6tVORGc2t4jcHD1j46Pzs4qWOiQ0)
 [Arthur Rump, Kleisli arrows explained](https://www.youtube.com/@arthurrump)
+
+## 2026-11-03
+
+[rxjs-formal-way/evidence/M02.md at main · hansschenker/rxjs-formal-way](https://github.com/hansschenker/rxjs-formal-way/blob/main/evidence/M02.md)
+[rxjs-formal-way/operators/filter.md at main · hansschenker/rxjs-formal-way](https://github.com/hansschenker/rxjs-formal-way/blob/main/operators/filter.md)
+[(6643) Marco Perone: CREM: Composable Representable Executable Machines - HaskellerZ April 2023 - YouTube](https://www.youtube.com/watch?v=w8mnp4SGT_M)
+[(6643) marco perone - YouTube](https://www.youtube.com/results?search_query=marco+perone)
+[Domain modelling with state machines](https://marcosh.github.io/post/2021/10/27/ddd-state-machines.html)
+[Recall - Your AI Knowledge Base](https://app.recall.it/item/c7b3b94e-798b-469d-ac57-02126495edca?onboarding=true)
+[Gemini Notebook](https://notebook.google.com/notebook/bce0f822-0af0-48a0-b447-6789543ca3b6)
+[Avanscoperta Blog](https://blog.avanscoperta.it/)
+[Recall - Your AI Knowledge Base](https://app.recall.it/item/bdb67168-7688-4697-8515-1017ff87f4d9?onboarding=true)
+[(6639) Domain Modelling Alloy - YouTube](https://www.youtube.com/results?search_query=Domain+Modelling+Alloy)
+[https://softwareabstractions.org/models/a4-models-index.html](https://softwareabstractions.org/models/a4-models-index.html)
+[Amazon.de : Software Abstractions](https://www.amazon.de/s?k=Software+Abstractions&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=H3KQJ3K4BIS6&sprefix=software+abstractions%2Caps%2C355&ref=nb_sb_noss)
+[(6636) A pedagogical introduction to Curry-Howard correspondence and its applications, for programmers - YouTube](https://www.youtube.com/watch?v=KcfD3Iv--UM&t=89s)
+[Lucifier129 (工业聚)](https://github.com/Lucifier129)
+[rxjs-animation-demo/tsconfig.json at master · Lucifier129/rxjs-animation-demo](https://github.com/Lucifier129/rxjs-animation-demo/blob/master/tsconfig.json)
+[Aiden Bai (@aidenybai) / X](https://x.com/aidenybai)
