@@ -111,3 +111,22 @@
 [rikace/tpl-dataflow](https://github.com/rikace/tpl-dataflow/tree/main)
 [GCP Dataflow Streaming data processing demo - YouTube](https://www.youtube.com/watch?v=-kyRluJWZ9w&list=PL7B3mwEXCi-a20Gjy4llLmh4MK4V-S8wo&index=2)
 [Dataflow and Reactive Programming Systems - Interview With New Book Author, Matt Carkci - YouTube](https://www.youtube.com/watch?v=5aNj7Lb6pDo&t=30s)
+
+## 2026-11-12
+
+[can BDD Scenarios also be the basis for Testcases - Google Search](https://www.google.com/search?q=can+BDD+Scenarios+also+be+the+basis+for+Testcases&newwindow=1&sca_esv=5d94e750a62d2e9d&sxsrf=AKL5yDiYNEqeTnQa7W1Yn2uPAFiGkmMAeA%3A1794478803168&source=hp&ei=05L1apTUB7aP9u8P18XrkQ4&iflsig=AHSINFcAAAAAavWg4y4NUxx_gK_mKqB-NUGX-1usLOQq&ved=2ahUKEwjUifi8moKYAxW2h_0HHdfiOuIQ4dUDegQIABAq&uact=5&oq=can+BDD+Scenarios+also+be+the+basis+for+Testcases&gs_lp=EhBnd3Mtd2l6LW1vZGVsZXNzIjFjYW4gQkREIFNjZW5hcmlvcyBhbHNvIGJlIHRoZSBiYXNpcyBmb3IgVGVzdGNhc2VzSMalAVDqCljxmwFwAngAkAEAmAFLoAHpFaoBAjUyuAEDyAEA-AEBmAIJoALxA6gCBcICEBAjGKIHGJ4GGPAFGOoCGCfCAhAQIxjwBRieBhiiBxjqAhgnwgINECMYogcYngYY8AUYJ8ICDRAjGPAFGJ4GGKIHGCfCAg4QABiABBixAxieBhjwBcICERAAGIAEGLEDGIMBGJ4GGPAFwgIOEAAYgAQYtAcYngYY8AXCAgsQABiABBieBhjwBZgDS5IHATmgB6p-sgcBObgH8QPCBwUyLjYuMcgHEYAIAQ&sclient=gws-wiz-modeless&aep=107&cs=0&mstk=AUtExfDGR6p5EIItuz36tFHBhvnW8vQO9E9tHdE9WUX7zBLunBD-MVgXKD1X3NcZXTFql96un274jqGchPLkzNgdL4ok_DnV5FWMqdmkzPJOebXm1GZjAOHc4Yogektihy-UvfnA9FKkPPnnJwywdDyVHo2tz8UcIT592WWG-zba1qEIZbybLDI5NWspCjaMgM4rapYWjLUFPRely8MKtPlIHINdNPeCjkWBkRk9IZ5uYBDN4IxPQ2yiTxt1XsbadhBWMOxfLNUNhcmT7A&csuir=1&mtid=6pL1auPLDYvi7_UPkYXagQQ&udm=50)
+[rxjs-formal-way/generated/mergeWith.bdd.md at main · hansschenker/rxjs-formal-way](https://github.com/hansschenker/rxjs-formal-way/blob/main/generated/mergeWith.bdd.md)
+[RxJS - withLatestFrom](https://rxjs.dev/api/index/function/withLatestFrom#example)
+[RxJS - mergeWith](https://rxjs.dev/api/index/function/mergeWith)
+[RxJS - mergeAll](https://rxjs.dev/api/index/function/mergeAll#see-also)
+[Types and behavior | RxJS Type Notation](https://netxpert.ch/rxjs-type-notation/guide/behavior.html)
+[Succinct types for values over time | RxJS Type Notation](https://netxpert.ch/rxjs-type-notation/)
+[Recall - Your AI Knowledge Base](https://app.recall.it/item/9b171988-785c-496e-9103-8e9685e88db6?onboarding=true)
+[Lean 4 for Beginners: Your First Program and Proof - YouTube](https://www.youtube.com/watch?v=GRVeAJjAaCA)
+[Mathematica on X: "Logic speaks in a tiny alphabet of symbols. ∃ says “somewhere,” ∀ says “everywhere,” ∧ and ∨ decide what must hold together or at least once. ⊨ and ⊢ separate what is true from what can be proved, while □ marks what cannot be otherwise. These marks turn ordinary language https://t.co/lpudLOsHkR" / X](https://x.com/mathemetica/status/2120106342828724406/photo/1)
+[Pattern matching and type safety in TypeScript - LogRocket Blog](https://blog.logrocket.com/pattern-matching-type-safety-typescript/)
+[ts-pattern: TypeScript Pattern Matching in 2026 — PkgPulse Guides](https://www.pkgpulse.com/guides/ts-pattern-typescript-exhaustive-pattern-matching-2026)
+[Code: The Hidden Language of Computer Hardware and Software : Petzold, Charles: Amazon.de: Bücher](https://www.amazon.de/Code-Language-Computer-Hardware-Software/dp/0137909101/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1TAVLGCP1MSUU&dib=eyJ2IjoiMSJ9.kzwflhAGwG6uHnzlfjU-oRpfhCYSMxxAIncluqkLwGTe2CkJfGTa4_63gopc9sNQuLKBaDkDx1xcuBxBx8VelVNZ_s9wDIPeudy4zuudYP3tgpDhzDfpgHce02JooOYJeuuHdea7taSIfi7FzhcF1qpTsPHOI3KtgX97D2CWiKuE2I1scaIOixHaWchlJPHjeUjC314UyDRZdSx6Hyz3BKoctnOK30NTimTzg6iXy_s.2MlpfjejSrBmUr3HeL0sVfCJrI6GdZjd0df2yUYBA1Q&dib_tag=se&keywords=code+petzold&qid=1794455297&sprefix=code+petzold%2Caps%2C401&sr=8-1&ufe=app_do%3Aamzn1.fos.8b36938c-a9a7-4518-ac21-d97ae5adf50c)
+[RAG Explained: From BM25 to Agentic RAG | Stanford CS329Z Lecture 3 with Diyi Yang - YouTube](https://www.youtube.com/watch?v=psLc-46GqY0)
+[Lean for Scientists and Engineers, Summer 2024 - Lecture 2 - YouTube](https://www.youtube.com/watch?v=y66qo38ICFE&pp=0gcJCUoMAYcqIYzv)
+[Git Explained in 25 Mins | Git and GitHub Tutorial - YouTube](https://www.youtube.com/watch?v=8944biinHgE)
